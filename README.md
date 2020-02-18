@@ -50,3 +50,7 @@ I need and it works very well.
 Use it instead of clearing the SDP+ICE value under the OTP once connected.
 
 ### Lock the worker CORS origin to the final address of the frame site
+
+### Handle disconnects by reconnecting on the signaling server using the TOTP
+
+### Run the offerer peer on the NUC and add health checks to the script runner
