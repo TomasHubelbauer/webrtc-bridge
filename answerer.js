@@ -27,12 +27,14 @@ window.addEventListener('load', async () => {
   const answerKey = code + '-answer';
 
   let counter = 0;
-  peerConnection.addEventListener('icecandidate', async () => {
+  peerConnection.addEventListener('icecandidate', async event => {
     // Pace the calls to the worker to avoid 500s when the ICE is fast
     await wait(counter++ * 1000);
 
     // Update the SDP with the ICE lines
-    await post(answerKey, peerConnection.localDescription);
+    if (!event.candidate) {
+      await post(answerKey, peerConnection.localDescription);
+    }
   });
 
   peerConnection.addEventListener('datachannel', async event => {
@@ -58,5 +60,5 @@ window.addEventListener('load', async () => {
   await peerConnection.setRemoteDescription(offer);
   const answer = await peerConnection.createAnswer();
   await peerConnection.setLocalDescription(answer);
-  await post(answerKey, answer);
+  //await post(answerKey, answer);
 });
