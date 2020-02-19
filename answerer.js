@@ -34,6 +34,7 @@ window.addEventListener('load', async () => {
     // Update the SDP with the ICE lines
     if (!event.candidate) {
       await post(answerKey, peerConnection.localDescription);
+      mount('Posted answer SDP+ICE', peerConnection.localDescription);
     }
   });
 
@@ -57,6 +58,7 @@ window.addEventListener('load', async () => {
   });
 
   const offer = await poll(offerKey);
+  mount('Polled offer SDP+ICE', offer);
   await peerConnection.setRemoteDescription(offer);
   const answer = await peerConnection.createAnswer();
   await peerConnection.setLocalDescription(answer);
