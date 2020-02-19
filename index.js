@@ -13,8 +13,9 @@ void async function () {
   if (!(await fs.pathExists('secret.js'))) {
     const secret = crypto.randomBytes(64).toString('hex');
     await fs.writeFile('secret.js', `export default '${secret}';`);
-    await email(headers('WebRTC Bridge', 'New secret'), `<a href="https://tomashubelbauer.github.io/webrtc-bridge/answerer.html?${secret}">Click here to store</a>`);
-    console.log(`New secret http://localhost:5000/answerer.html#${secret}`);
+    await email(headers('WebRTC Bridge', 'New secret'), `<a href="https://tomashubelbauer.github.io/webrtc-bridge/answerer.html#${secret}">Click here to store</a>`);
+    console.log(`http://localhost:5000/answerer.html#${secret}`);
+    console.log(`https://tomashubelbauer.github.io/webrtc-bridge/answerer.html#${secret}`);
   }
 
   const browser = await puppeteer.launch({ headless: false });
