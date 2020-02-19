@@ -1,3 +1,4 @@
+import secret from './secret.js';
 import watch from './watch.js';
 import mount from './mount.js';
 import post from './post.js';
@@ -6,6 +7,9 @@ import poll from './poll.js';
 import wait from './wait.js';
 
 window.addEventListener('load', async () => {
+  console.log(`http://localhost:5000/answerer.html#${secret}`);
+  console.log(`https://tomashubelbauer.github.io/webrtc-bridge/answerer.html#${secret}`);
+
   const peerConnection = new RTCPeerConnection({ iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }] });
   watch(peerConnection, mount);
 

@@ -16,10 +16,6 @@ void async function () {
     await email(headers('WebRTC Bridge', 'New secret'), `<a href="https://tomashubelbauer.github.io/webrtc-bridge/answerer.html#${secret}">Click here to store</a>`);
   }
 
-  const secret = await fs.readFile('secret.js', { encoding: 'ascii' });
-  console.log(`http://localhost:5000/answerer.html#${secret}`);
-  console.log(`https://tomashubelbauer.github.io/webrtc-bridge/answerer.html#${secret}`);
-
   const browser = await puppeteer.launch({ headless: false });
   try {
     const [page] = await browser.pages();
