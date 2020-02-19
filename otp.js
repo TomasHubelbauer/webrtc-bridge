@@ -1,6 +1,20 @@
-import secret from './secret.js';
-
 export default async function otp() {
+  let secret;
+
+  // Try to read the secret from the file when on the server
+  try {
+    const module = await import('./secret.js');
+    secret = module.default;
+  }
+  // Fall back and try to read the secret from local storage when on the client
+  catch (error) {
+    secret = window.localStorage.getItem('secret');
+  }
+
+  if (!secret) {
+    throw new Error('The OTP secret was not found in the local storage.');
+  }
+
   return totp(secret);
 }
 

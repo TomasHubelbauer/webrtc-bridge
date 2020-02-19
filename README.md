@@ -30,9 +30,16 @@ The idea is as follows:
 
 ## Running
 
-`npx serve .`
+To run the offerer on the server, run `node .`
+and wait for `http://localhost:8000/offerer.html` to open in a Puppeteer window.
 
-Access `http://localhost:5000/offerer` and `http://localhost:5000/answerer`.
+To run the answerer on the client, run `npx serve .`
+and go to `http://localhost:5000/answerer.html`
+or go to [`https://tomashubelbauer.github.io/webrtc-bridge/answerer.html`](https://tomashubelbauer.github.io/webrtc-bridge/answerer.html).
+
+To (re)set the OTP secret, run the offerer first and use the printed and emailed
+link to open the answerer using an OTP reset URL which will copy the OTP secret
+to the local storage.
 
 ## Acknowledgements
 
@@ -42,6 +49,10 @@ very thankful for not having to figure it out myself. I've extracted the essence
 I need and it works very well.
 
 ## To-Do
+
+### Make compatible with Node using `wrtc` to not have to run in Puppeteer
+
+https://github.com/node-webrtc/node-webrtc
 
 ### Track the worker code here and use `cf-worker-deploy` to deploy its changes.
 

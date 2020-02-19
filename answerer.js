@@ -6,6 +6,11 @@ import post from './post.js';
 import wait from './wait.js';
 
 window.addEventListener('load', async () => {
+  // Adopt the new OTP secret if access through an OTP reset link
+  if (window.location.hash) {
+    window.localStorage.setItem('secret', window.location.hash.slice('#'.length));
+  }
+
   const peerConnection = new RTCPeerConnection({ iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }] });
   watch(peerConnection, mount);
 
