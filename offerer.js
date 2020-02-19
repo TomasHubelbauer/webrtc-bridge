@@ -44,8 +44,9 @@ window.addEventListener('load', async () => {
     }
   });
 
-  dataChannel.addEventListener('message', () => {
-    console.log('message to offerer:', event.data);
+  dataChannel.addEventListener('message', event => {
+    void event.data;
+    // TODO: Handle the answerer request
   });
 
   const offer = await peerConnection.createOffer();

@@ -15,7 +15,13 @@ window.addEventListener('load', async () => {
   const secret = window.localStorage.getItem('secret');
   console.log(secret);
   if (!secret) {
-    throw new Error('The OTP secret was not found in the local storage.');
+    const secret = prompt('No OTP secret found. Provide the OTP secret:');
+    if (secret) {
+      window.location.hash = secret;
+      window.location.reload();
+    }
+
+    return;
   }
 
   const peerConnection = new RTCPeerConnection({ iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }] });
@@ -53,7 +59,8 @@ window.addEventListener('load', async () => {
     });
 
     dataChannel.addEventListener('message', event => {
-      console.log('message to answerer:', event.data);
+      void event.data;
+      // TODO: Handle the offerer response
     });
   });
 

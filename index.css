@@ -1,0 +1,14 @@
+div.log {
+  border-left: 1ex solid gray;
+  margin: 1em;
+  padding: 1ex;
+}
+
+span.stamp {
+  color: gray;
+  padding-right: 1em;
+}
+
+pre {
+  overflow: auto;
+}
