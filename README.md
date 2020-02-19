@@ -35,7 +35,7 @@ To run the offerer on the server, run `node .` and wait for
 
 To run the answerer on the client, use one ofthe printed link from the offerer:
 
-- Local: `http://localhost:5000#{secret}` (through `npx serve .`)
+- Local: `http://localhost:5000/answerer.html#{secret}` (through `npx serve .`)
 - Remote: `https://tomashubelbauer.github.io/webrtc-bridge/answerer.html#{secret}`
 
 The printed URLs include the OTP secret in the URL fragment allowing the client
@@ -44,7 +44,7 @@ to sync with the server in case they weren't already.
 If you already has an OTP secret stored with the client, you can run either the
 local or the remote link directly without the URL fragment:
 
-- Local: [`http://localhost:5000`](http://localhost:5000) (through `npx serve .`)
+- Local: [`http://localhost:5000/answerer.html`](http://localhost:5000) (through `npx serve .`)
 - Remote: [`https://tomashubelbauer.github.io/webrtc-bridge/answerer.html`](https://tomashubelbauer.github.io/webrtc-bridge/answerer.html)
 
 If you want to reset the OTP secret, delete `secret.js` or run `node . secret`
