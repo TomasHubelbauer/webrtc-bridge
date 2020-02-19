@@ -59,6 +59,14 @@ I need and it works very well.
 
 ## To-Do
 
+### Update ICE instead of polling only for the first SDP instance in the signal
+
+Right now ICE is collected and the SDP updated with it in the signaling channel.
+However, the SDP is polled only once and used immediately once it appears.
+Instead, the SDP+ICE should be polled repeatedly until the connection is
+established, at which point the polling should stop and the key should be
+deleted on the signaling channel.
+
 ### Make compatible with Node using `wrtc` to not have to run in Puppeteer
 
 https://github.com/node-webrtc/node-webrtc
