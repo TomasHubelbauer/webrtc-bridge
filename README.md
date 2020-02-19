@@ -70,6 +70,8 @@ deleted on the signaling channel.
 For now, I've tried a solution where trickle ICE is disabled forcing both peers
 to collect all ICE candidates first and only then advertise their SDP+ICE.
 
+This still fails which might be because I need TURN? Anyway, figure out why.
+
 ### Make compatible with Node using `wrtc` to not have to run in Puppeteer
 
 https://github.com/node-webrtc/node-webrtc
