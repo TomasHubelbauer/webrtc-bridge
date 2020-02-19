@@ -7,13 +7,14 @@ import poll from './poll.js';
 import wait from './wait.js';
 
 window.addEventListener('load', async () => {
+  console.log(secret);
   console.log(`http://localhost:5000/answerer.html#${secret}`);
   console.log(`https://tomashubelbauer.github.io/webrtc-bridge/answerer.html#${secret}`);
 
   const peerConnection = new RTCPeerConnection({ iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }] });
   watch(peerConnection, mount);
 
-  const { code } = await otp();
+  const { code } = await otp(secret);
   mount(code);
   const offerKey = code + '-offer';
   const answerKey = code + '-answer';

@@ -8,13 +8,20 @@ import wait from './wait.js';
 window.addEventListener('load', async () => {
   // Adopt the new OTP secret if access through an OTP reset link
   if (window.location.hash) {
-    window.localStorage.setItem('secret', window.location.hash.slice('#'.length));
+    const secret = window.location.hash.slice('#'.length);
+    window.localStorage.setItem('secret', secret);
+  }
+
+  const secret = window.localStorage.getItem('secret');
+  console.log(secret);
+  if (!secret) {
+    throw new Error('The OTP secret was not found in the local storage.');
   }
 
   const peerConnection = new RTCPeerConnection({ iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }] });
   watch(peerConnection, mount);
 
-  const { code } = await otp();
+  const { code } = await otp(secret);
   mount(code);
   const offerKey = code + '-offer';
   const answerKey = code + '-answer';
